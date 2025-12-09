@@ -77,13 +77,13 @@ const CreateDebtModal = ({ isOpen, onClose, customer, onSuccess }: CreateDebtMod
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-                <div className="flex justify-between items-center p-6 border-b sticky top-0 bg-white">
-                    <h2 className="text-xl font-bold text-gray-800">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-card rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-border">
+                <div className="flex justify-between items-center p-6 border-b border-border sticky top-0 bg-card z-10">
+                    <h2 className="text-xl font-bold text-foreground">
                         Add Debt for {customer.name}
                     </h2>
-                    <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+                    <button onClick={onClose} className="text-muted-foreground hover:text-foreground">
                         <X className="w-6 h-6" />
                     </button>
                 </div>
@@ -118,7 +118,7 @@ const CreateDebtModal = ({ isOpen, onClose, customer, onSuccess }: CreateDebtMod
                                 <button
                                     type="button"
                                     onClick={() => handleRemoveItem(index)}
-                                    className="text-red-500 hover:text-red-700 mt-2"
+                                    className="text-destructive hover:text-destructive/80 mt-2"
                                     title="Remove Item"
                                 >
                                     <Trash2 className="w-5 h-5" />
@@ -128,7 +128,7 @@ const CreateDebtModal = ({ isOpen, onClose, customer, onSuccess }: CreateDebtMod
                         <button
                             type="button"
                             onClick={handleAddItem}
-                            className="text-sm text-primary-600 hover:text-primary-800 font-medium flex items-center"
+                            className="text-sm text-primary hover:text-primary/80 font-medium flex items-center"
                         >
                             <Plus className="w-4 h-4 mr-1" /> Add Item
                         </button>
@@ -153,8 +153,8 @@ const CreateDebtModal = ({ isOpen, onClose, customer, onSuccess }: CreateDebtMod
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

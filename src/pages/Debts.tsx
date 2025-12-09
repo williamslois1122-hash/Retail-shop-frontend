@@ -89,14 +89,16 @@ const Debts = () => {
             </div>
 
             {/* Stats */}
-            <div className="card bg-gradient-to-br from-red-500 to-red-600 text-white">
+            <div className="card">
                 <div className="flex items-center justify-between">
                     <div>
-                        <p className="text-red-100 text-sm">Total Outstanding Debt</p>
-                        <p className="text-3xl font-bold mt-1">${totalOutstanding.toFixed(2)}</p>
-                        <p className="text-red-100 text-xs mt-1">{customers.length} customers owe money</p>
+                        <p className="text-sm font-medium text-muted-foreground">Total Outstanding Debt</p>
+                        <p className="text-3xl font-bold mt-1 text-foreground">${totalOutstanding.toFixed(2)}</p>
+                        <p className="text-xs mt-1 text-muted-foreground">{customers.length} customers owe money</p>
                     </div>
-                    <DollarSign className="w-12 h-12 text-red-200" />
+                    <div className="p-3 bg-destructive/10 rounded-full">
+                        <DollarSign className="w-8 h-8 text-destructive" />
+                    </div>
                 </div>
             </div>
 
@@ -133,12 +135,12 @@ const Debts = () => {
                 {loading ? (
                     <div className="text-center py-8 text-gray-500">Loading debtors...</div>
                 ) : filteredCustomers.length === 0 ? (
-                    <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
-                        <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                    <div className="text-center py-12 card">
+                        <div className="mx-auto w-16 h-16 bg-green-100/20 rounded-full flex items-center justify-center mb-4">
                             <CreditCard className="w-8 h-8 text-green-600" />
                         </div>
-                        <h3 className="text-lg font-medium text-gray-900">No Outstanding Debts</h3>
-                        <p className="text-gray-500 mt-1">
+                        <h3 className="text-lg font-medium text-foreground">No Outstanding Debts</h3>
+                        <p className="text-muted-foreground mt-1">
                             {searchTerm ? 'No matching results.' : 'Great job! All customers are paid up.'}
                         </p>
                     </div>
@@ -147,30 +149,30 @@ const Debts = () => {
                         <div
                             key={customer.id}
                             onClick={() => setSelectedCustomer(customer)}
-                            className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-all cursor-pointer group"
+                            className="card p-4 hover:shadow-md transition-all cursor-pointer group"
                         >
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-4">
-                                    <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold">
+                                    <div className="w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center text-destructive font-bold">
                                         {customer.name.charAt(0)}
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+                                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
                                             {customer.name}
                                         </h3>
-                                        <p className="text-sm text-gray-500">
+                                        <p className="text-sm text-muted-foreground">
                                             {customer.debtCount} active debt(s)
                                         </p>
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-4">
                                     <div className="text-right">
-                                        <p className="font-bold text-red-600 text-lg">
+                                        <p className="font-bold text-destructive text-lg">
                                             ${customer.totalDebt.toFixed(2)}
                                         </p>
-                                        <p className="text-xs text-gray-400">Total Owed</p>
+                                        <p className="text-xs text-muted-foreground">Total Owed</p>
                                     </div>
-                                    <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-primary-500" />
+                                    <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
                                 </div>
                             </div>
                         </div>

@@ -95,20 +95,22 @@ const Customers = () => {
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="card bg-gradient-to-br from-indigo-500 to-indigo-600 text-white">
+                <div className="card">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-indigo-100 text-sm">Total Customers</p>
-                            <p className="text-3xl font-bold mt-1">{customers.length}</p>
+                            <p className="text-sm font-medium text-muted-foreground">Total Customers</p>
+                            <p className="text-3xl font-bold mt-1 text-foreground">{customers.length}</p>
                         </div>
-                        <UsersIcon className="w-12 h-12 text-indigo-200" />
+                        <div className="p-3 bg-primary/10 rounded-full">
+                            <UsersIcon className="w-8 h-8 text-primary" />
+                        </div>
                     </div>
                 </div>
-                <div className="card bg-gradient-to-br from-green-500 to-green-600 text-white">
+                <div className="card">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-green-100 text-sm">Recent Additions</p>
-                            <p className="text-3xl font-bold mt-1">
+                            <p className="text-sm font-medium text-muted-foreground">Recent Additions</p>
+                            <p className="text-3xl font-bold mt-1 text-foreground">
                                 {customers.filter(c => {
                                     const createdDate = new Date(c.created_at);
                                     const today = new Date();
@@ -117,9 +119,11 @@ const Customers = () => {
                                     return diffDays <= 7;
                                 }).length}
                             </p>
-                            <p className="text-green-100 text-xs mt-1">Last 7 days</p>
+                            <p className="text-xs mt-1 text-muted-foreground">Last 7 days</p>
                         </div>
-                        <Plus className="w-12 h-12 text-green-200" />
+                        <div className="p-3 bg-green-500/10 rounded-full">
+                            <Plus className="w-8 h-8 text-green-600" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -127,12 +131,12 @@ const Customers = () => {
             {/* Form */}
             {showForm && (
                 <div className="card">
-                    <h2 className="text-xl font-semibold mb-4">
+                    <h2 className="text-xl font-semibold mb-4 text-foreground">
                         {editingId ? 'Edit Customer' : 'Add New Customer'}
                     </h2>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
+                            <label className="block text-sm font-medium text-muted-foreground mb-1">Customer Name</label>
                             <input
                                 type="text"
                                 required
@@ -157,9 +161,9 @@ const Customers = () => {
             {/* Customers List */}
             <div className="grid grid-cols-1 gap-4">
                 {loading ? (
-                    <div className="text-center py-8 text-gray-500">Loading customers...</div>
+                    <div className="text-center py-8 text-muted-foreground">Loading customers...</div>
                 ) : customers.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
+                    <div className="text-center py-8 text-muted-foreground">
                         No customers.
                     </div>
                 ) : (
@@ -167,12 +171,12 @@ const Customers = () => {
                         <div
                             key={customer.id}
                             onClick={() => setExpandedId(expandedId === customer.id ? null : customer.id)}
-                            className={`card hover:shadow-lg transition-all cursor-pointer ${expandedId === customer.id ? 'ring-2 ring-primary-500' : ''}`}
+                            className={`card hover:shadow-lg transition-all cursor-pointer ${expandedId === customer.id ? 'ring-2 ring-primary' : ''}`}
                         >
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <h3 className="text-xl font-semibold text-gray-800">{customer.name}</h3>
-                                    <span className="inline-block px-3 py-1 text-xs font-medium bg-indigo-100 text-indigo-700 rounded-full mt-1">
+                                    <h3 className="text-xl font-semibold text-foreground">{customer.name}</h3>
+                                    <span className="inline-block px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mt-1">
                                         Added: {new Date(customer.created_at).toLocaleDateString()}
                                     </span>
                                 </div>
@@ -182,22 +186,22 @@ const Customers = () => {
                                             e.stopPropagation();
                                             handleEdit(customer);
                                         }}
-                                        className="text-gray-400 hover:text-primary-600 transition-colors p-2"
+                                        className="text-muted-foreground hover:text-primary transition-colors p-2"
                                         title="Edit"
                                     >
                                         <Edit2 className="w-5 h-5" />
                                     </button>
                                     {expandedId === customer.id ? (
-                                        <ChevronUp className="w-5 h-5 text-gray-400" />
+                                        <ChevronUp className="w-5 h-5 text-muted-foreground" />
                                     ) : (
-                                        <ChevronDown className="w-5 h-5 text-gray-400" />
+                                        <ChevronDown className="w-5 h-5 text-muted-foreground" />
                                     )}
                                 </div>
                             </div>
 
                             {/* Expanded Quick Actions */}
                             {expandedId === customer.id && (
-                                <div className="mt-4 pt-4 border-t animate-fadeIn">
+                                <div className="mt-4 pt-4 border-t border-border animate-fadeIn">
                                     <div className="grid grid-cols-2 gap-3 mb-3">
                                         <button
                                             onClick={(e) => {
@@ -205,7 +209,7 @@ const Customers = () => {
                                                 setSelectedCustomer(customer);
                                                 setActiveModal('debt');
                                             }}
-                                            className="flex items-center justify-center space-x-2 bg-red-50 hover:bg-red-100 text-red-700 py-3 rounded-lg transition-colors"
+                                            className="flex items-center justify-center space-x-2 bg-destructive/10 hover:bg-destructive/20 text-destructive py-3 rounded-lg transition-colors"
                                         >
                                             <CreditCard className="w-5 h-5" />
                                             <span className="font-medium">Add Debt</span>
@@ -216,7 +220,7 @@ const Customers = () => {
                                                 setSelectedCustomer(customer);
                                                 setActiveModal('advance');
                                             }}
-                                            className="flex items-center justify-center space-x-2 bg-blue-50 hover:bg-blue-100 text-blue-700 py-3 rounded-lg transition-colors"
+                                            className="flex items-center justify-center space-x-2 bg-primary/10 hover:bg-primary/20 text-primary py-3 rounded-lg transition-colors"
                                         >
                                             <TrendingUp className="w-5 h-5" />
                                             <span className="font-medium">Add Advance</span>
@@ -229,7 +233,7 @@ const Customers = () => {
                                                 setSelectedCustomer(customer);
                                                 setActiveModal('viewDebts');
                                             }}
-                                            className="flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg transition-colors border border-gray-200"
+                                            className="flex items-center justify-center space-x-2 bg-muted hover:bg-muted/80 text-foreground py-2 rounded-lg transition-colors border border-border"
                                         >
                                             <Eye className="w-4 h-4" />
                                             <span className="font-medium text-sm">View Debts</span>
@@ -240,7 +244,7 @@ const Customers = () => {
                                                 setSelectedCustomer(customer);
                                                 setActiveModal('viewAdvances');
                                             }}
-                                            className="flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg transition-colors border border-gray-200"
+                                            className="flex items-center justify-center space-x-2 bg-muted hover:bg-muted/80 text-foreground py-2 rounded-lg transition-colors border border-border"
                                         >
                                             <Eye className="w-4 h-4" />
                                             <span className="font-medium text-sm">View Advance</span>

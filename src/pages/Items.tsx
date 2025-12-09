@@ -95,13 +95,15 @@ const Items = () => {
 
             {/* Stats Card */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="card bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+                <div className="card">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-blue-100 text-sm">Total Items</p>
-                            <p className="text-3xl font-bold mt-1">{items.length}</p>
+                            <p className="text-sm font-medium text-muted-foreground">Total Items</p>
+                            <p className="text-3xl font-bold mt-1 text-foreground">{items.length}</p>
                         </div>
-                        <PackageIcon className="w-12 h-12 text-blue-200" />
+                        <div className="p-3 bg-primary/10 rounded-full">
+                            <PackageIcon className="w-8 h-8 text-primary" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,30 +175,30 @@ const Items = () => {
                         No items found. Add your first item!
                     </div>
                 ) : (
-                    <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
+                    <div className="card overflow-hidden p-0">
+                        <table className="min-w-full divide-y divide-border">
+                            <thead className="bg-muted/50">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Name</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price Range</th>
-                                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Item Name</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Price Range</th>
+                                    <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">Actions</th>
                                 </tr>
-                            </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
+                            </thead >
+                            <tbody className="bg-card divide-y divide-border">
                                 {items.map((item) => (
-                                    <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+                                    <tr key={item.id} className="hover:bg-muted/50 transition-colors">
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="text-sm font-medium text-gray-900">{item.name}</div>
+                                            <div className="text-sm font-medium text-foreground">{item.name}</div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="text-sm text-gray-900">
+                                            <div className="text-sm text-foreground">
                                                 ${item.min_price.toFixed(2)} - ${item.max_price.toFixed(2)}
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <button
                                                 onClick={() => handleEdit(item)}
-                                                className="text-primary-600 hover:text-primary-900 bg-primary-50 p-2 rounded-lg transition-colors"
+                                                className="text-primary hover:text-primary/80 bg-primary/10 p-2 rounded-lg transition-colors"
                                                 title="Edit"
                                             >
                                                 <Edit2 className="w-5 h-5" />
@@ -205,11 +207,11 @@ const Items = () => {
                                     </tr>
                                 ))}
                             </tbody>
-                        </table>
-                    </div>
+                        </table >
+                    </div >
                 )}
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

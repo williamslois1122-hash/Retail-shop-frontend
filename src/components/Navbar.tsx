@@ -14,10 +14,10 @@ const Navbar = () => {
     const isActive = (path: string) => location.pathname === path;
 
     return (
-        <nav className="fixed left-0 top-0 h-screen w-64 bg-white shadow-xl flex flex-col">
+        <nav className="fixed left-0 top-0 h-screen w-64 bg-sidebar shadow-xl flex flex-col border-r border-sidebar-border">
             {/* Logo */}
-            <div className="p-6 border-b border-gray-200">
-                <Link to="/" className="flex items-center space-x-3 text-primary-600 font-bold text-xl">
+            <div className="p-6 border-b border-sidebar-border">
+                <Link to="/" className="flex items-center space-x-3 text-sidebar-primary font-bold text-xl">
                     <Store className="w-8 h-8" />
                     <span>Retail Shop</span>
                 </Link>
@@ -32,8 +32,8 @@ const Navbar = () => {
                             key={item.path}
                             to={item.path}
                             className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActive(item.path)
-                                ? 'bg-primary-600 text-white shadow-md'
-                                : 'text-gray-600 hover:bg-gray-100'
+                                ? 'bg-sidebar-primary text-sidebar-primary-foreground shadow-md'
+                                : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                                 }`}
                         >
                             <Icon className="w-5 h-5" />
@@ -44,8 +44,8 @@ const Navbar = () => {
             </div>
 
             {/* Footer */}
-            <div className="p-4 border-t border-gray-200">
-                <p className="text-xs text-gray-500 text-center">© 2025 Retail Shop</p>
+            <div className="p-4 border-t border-sidebar-border">
+                <p className="text-xs text-sidebar-foreground/70 text-center">© 2025 Retail Shop</p>
             </div>
         </nav>
     );

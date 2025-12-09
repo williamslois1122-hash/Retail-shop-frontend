@@ -71,16 +71,16 @@ const CreateAdvanceModal = ({ isOpen, onClose, customer, onSuccess }: CreateAdva
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl w-full max-w-lg animate-fadeIn">
-                <div className="flex justify-between items-center p-6 border-b">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-card rounded-lg shadow-xl w-full max-w-lg animate-fadeIn border border-border">
+                <div className="flex justify-between items-center p-6 border-b border-border">
                     <div>
-                        <h2 className="text-xl font-bold text-gray-800">
+                        <h2 className="text-xl font-bold text-foreground">
                             Add Advance
                         </h2>
-                        <p className="text-sm text-gray-500 mt-1">For {customer.name}</p>
+                        <p className="text-sm text-muted-foreground mt-1">For {customer.name}</p>
                     </div>
-                    <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+                    <button onClick={onClose} className="text-muted-foreground hover:text-foreground">
                         <X className="w-6 h-6" />
                     </button>
                 </div>
@@ -125,14 +125,14 @@ const CreateAdvanceModal = ({ isOpen, onClose, customer, onSuccess }: CreateAdva
                                 <input
                                     type="number"
                                     readOnly
-                                    className="input-field pl-7 bg-gray-50 text-gray-500"
+                                    className="input-field pl-7 bg-muted text-muted-foreground"
                                     value={formData.pending_amount.toFixed(2)}
                                 />
                             </div>
                         </div>
                     </div>
 
-                    <div className="flex space-x-3 justify-end pt-4 border-t mt-6">
+                    <div className="flex space-x-3 justify-end pt-4 border-t border-border mt-6">
                         <button type="button" onClick={onClose} className="btn-secondary">
                             Cancel
                         </button>
